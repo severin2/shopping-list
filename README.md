@@ -14,26 +14,26 @@
 ### Developing
 
 1. Run the postgres db
-   ```sh
-   docker-compose up postgres
-   ```
+```sh
+docker-compose up postgres
+```
 
 2. Run backend in dev mode
-   ```sh
-   cd frontend && npm run dev
-   ```
+```sh
+cd backend && npx prisma migrate deploy && npm run dev
+```
    
 3. Run frontend in dev mode
-   ```sh
-   cd backend && npm run dev
-   ```
+```sh
+cd frontend && npm run dev
+```
 
 ### Running the App
 
 1. Build and start all services:
-   ```sh
-   docker-compose up --build
-   ```
+```sh
+docker-compose up --build
+```
 
 2. Access the apps:
    - Frontend: [http://localhost:3000](http://localhost:3000)
