@@ -1,14 +1,7 @@
 import { NextResponse } from 'next/server';
+import type { Item } from '@/types/item';
 
 const API_URL = process.env.API_URL || 'http://localhost:4000';
-
-export type Item = {
-  id: number;
-  name: string;
-  description: string;
-  quantity: number;
-  isPurchased: boolean;
-};
 
 export type ResponseData<T> = {
   success: boolean;

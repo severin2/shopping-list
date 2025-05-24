@@ -11,6 +11,23 @@
 ### Prerequisites
 - Docker and Docker Compose installed
 
+### Developing
+
+1. Run the postgres db
+   ```sh
+   docker-compose up postgres
+   ```
+
+2. Run backend in dev mode
+   ```sh
+   cd frontend && npm run dev
+   ```
+   
+3. Run frontend in dev mode
+   ```sh
+   cd backend && npm run dev
+   ```
+
 ### Running the App
 
 1. Build and start all services:

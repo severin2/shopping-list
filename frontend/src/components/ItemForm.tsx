@@ -4,11 +4,11 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { Item } from '../app/api/items/route';
+import { Item } from '@/types/item';
 
 interface ItemFormProps {
-  onAdd?: (item: Omit<Item, 'id' | 'isPurchased'>) => Promise<void>;
-  onEdit?: (item: Item) => Promise<void>;
+  onAdd?: (item: Omit<Item, 'id' | 'isPurchased'>) => void;
+  onEdit?: (item: Item) => void;
   onCancel?: () => void;
   isLoading: boolean;
   item?: Item | null;
@@ -64,7 +64,7 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
           onChange={(e) => setName(e.target.value)}
           size='medium'
           fullWidth
-          inputProps={{ maxLength: 100 }}
+          slotProps={{ htmlInput: { maxLength: 100 } }}
         />
       </div>
       <div>
@@ -77,7 +77,7 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
           fullWidth
           multiline
           minRows={3}
-          inputProps={{ maxLength: 100 }}
+          slotProps={{ htmlInput: { maxLength: 100 } }}
           helperText={`${description.length}/100`}
         />
       </div>
@@ -105,8 +105,8 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
           label='Purchased'
         />
       )}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginTop: 32 }}>
-        <Button type='button' onClick={() => handleCancel()} color='inherit'>
+      <div className='flex justify-end gap-4 mt-8'>
+        <Button type='button' onClick={handleCancel} color='inherit'>
           Cancel
         </Button>
         <Button type='submit' variant='contained' disabled={isLoading || !name.trim()}>

@@ -1,15 +1,16 @@
+import Header from '@/components/Header';
+import { ReduxProviderWrapper } from '@/components/ReduxProviderWrapper';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import Header from '../components/Header';
+import { Dosis, Geist, Geist_Mono, Nunito_Sans } from 'next/font/google';
+import '@/app/globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const dosisSans = Dosis({
+  variable: '--font-dosis-sans',
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const nunitoSans = Nunito_Sans({
+  variable: '--font-nunito-sans',
   subsets: ['latin'],
 });
 
@@ -25,9 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${dosisSans.variable} ${nunitoSans.variable} antialiased`}>
         <Header />
-        {children}
+        <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
       </body>
     </html>
   );
