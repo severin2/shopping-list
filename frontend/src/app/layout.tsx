@@ -1,14 +1,14 @@
+import '@/app/globals.css';
 import Header from '@/components/Header';
 import { ReduxProviderWrapper } from '@/components/ReduxProviderWrapper';
+import { MuiThemeProvider } from '@/components/MuiThemeProvider';
 import type { Metadata } from 'next';
-import { Dosis, Geist, Geist_Mono, Nunito_Sans } from 'next/font/google';
-import '@/app/globals.css';
+import { Dosis, Nunito_Sans } from 'next/font/google';
 
 const dosisSans = Dosis({
   variable: '--font-dosis-sans',
   subsets: ['latin'],
 });
-
 const nunitoSans = Nunito_Sans({
   variable: '--font-nunito-sans',
   subsets: ['latin'],
@@ -26,9 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${dosisSans.variable} ${nunitoSans.variable} antialiased`}>
+      <body className={`${nunitoSans.variable} ${dosisSans.variable}`}>
         <Header />
-        <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
+        <MuiThemeProvider>
+          <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
+        </MuiThemeProvider>
       </body>
     </html>
   );

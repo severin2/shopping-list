@@ -75,27 +75,37 @@ export default function Home() {
       {!isLoading && (
         <>
           <div className='flex items-end justify-between'>
-            <Typography variant='h5'>Your Items</Typography>
+            <Typography variant='body1'>Your Items</Typography>
             {items.length > 0 && (
               <Button type='button' variant='contained' onClick={handleAddStart}>
                 Add Item
               </Button>
             )}
           </div>
-          <Drawer anchor='right' open={drawerOpen} onClose={handleCancel}>
-            <div style={{ width: 350, padding: 24 }}>
-              <ItemForm
-                onAdd={handleAddSave}
-                onEdit={handleEditSave}
-                onCancel={handleCancel}
-                item={selectedItem}
-                isLoading={isLoading}
-              />
-            </div>
+          <Drawer
+            anchor='right'
+            open={drawerOpen}
+            onClose={handleCancel}
+            slotProps={{
+              paper: {
+                sx: {
+                  width: '100%',
+                  maxWidth: '700px',
+                },
+              },
+            }}
+          >
+            <ItemForm
+              onAdd={handleAddSave}
+              onEdit={handleEditSave}
+              onCancel={handleCancel}
+              item={selectedItem}
+              isLoading={isLoading}
+            />
           </Drawer>
           {items.length === 0 ? (
             <div className='flex flex-col items-center justify-center h-[300px] border border-gray-300 rounded-lg text-gray-400'>
-              <Typography variant='h6' gutterBottom>
+              <Typography variant='body1' gutterBottom>
                 Your shopping list is empty 😥
               </Typography>
               <Button variant='contained' color='primary' onClick={handleAddStart}>

@@ -1,5 +1,3 @@
-// Prisma schema for shopping-list backend
-
 generator client {
   provider = "prisma-client-js"
 }

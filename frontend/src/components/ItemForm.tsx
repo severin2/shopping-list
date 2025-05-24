@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
+import { Item } from '@/types/item';
+import LastPageOutlinedIcon from '@mui/icons-material/LastPageOutlined';
+import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { Item } from '@/types/item';
+import TextField from '@mui/material/TextField';
+import { useEffect, useState } from 'react';
+import { DosisHeader } from './Header';
 
 interface ItemFormProps {
   onAdd?: (item: Omit<Item, 'id' | 'isPurchased'>) => void;
@@ -52,67 +55,81 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 16, minWidth: 320 }}
-    >
-      <div>
-        <TextField
-          label={item ? 'Edit item name' : 'New Item'}
-          placeholder={item ? 'Buy tomatoes' : 'Enter item name'}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          size='medium'
-          fullWidth
-          slotProps={{ htmlInput: { maxLength: 100 } }}
-        />
+    <>
+      <DosisHeader className='px-8 py-3 bg-gray-100'>
+        <div className='flex flex-row items-center justify-between'>
+          <Typography variant='h6'>SHOPPING LIST</Typography>
+          <Button aria-label='Close' color='inherit' onClick={handleCancel}>
+            <LastPageOutlinedIcon />
+          </Button>
+        </div>
+      </DosisHeader>
+      <div className='flex flex-col h-full mx-8 my-4'>
+        <div className='my-6'>
+          <Typography variant='body1'>{item ? 'Edit an Item' : 'Add an Item'}</Typography>
+          <Typography variant='body2' gutterBottom>
+            {item ? 'Edit your item below' : 'Add your new item below'}
+          </Typography>
+        </div>
+        <form onSubmit={handleSubmit} className='flex flex-col justify-between h-full'>
+          <div className='flex flex-col gap-6'>
+            <TextField
+              label={item ? 'Edit item name' : 'New Item'}
+              placeholder={item ? 'Buy tomatoes' : 'Enter item name'}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              size='medium'
+              fullWidth
+              slotProps={{ htmlInput: { maxLength: 100 } }}
+            />
+            <TextField
+              label='Description'
+              placeholder={item ? 'Get them from Walmart' : 'Enter description'}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              size='medium'
+              fullWidth
+              multiline
+              minRows={3}
+              slotProps={{ htmlInput: { maxLength: 100 } }}
+              helperText={`${description.length}/100`}
+            />
+            <TextField
+              label='Quantity'
+              select
+              value={quantity}
+              onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
+              size='medium'
+              fullWidth
+            >
+              {[...Array(20)].map((_, i) => (
+                <MenuItem key={i + 1} value={i + 1}>
+                  {i + 1}
+                </MenuItem>
+              ))}
+            </TextField>
+            {item && (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isPurchased}
+                    onChange={(e) => setIsPurchased(e.target.checked)}
+                  />
+                }
+                label='Purchased'
+              />
+            )}
+          </div>
+          <div className='flex justify-end gap-4 mt-8'>
+            <Button type='button' onClick={handleCancel} color='inherit'>
+              Cancel
+            </Button>
+            <Button type='submit' variant='contained' disabled={isLoading || !name.trim()}>
+              {item ? 'Save Item' : 'Add Task'}
+            </Button>
+          </div>
+        </form>
       </div>
-      <div>
-        <TextField
-          label='Description'
-          placeholder={item ? 'Get them from Walmart' : 'Enter description'}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          size='medium'
-          fullWidth
-          multiline
-          minRows={3}
-          slotProps={{ htmlInput: { maxLength: 100 } }}
-          helperText={`${description.length}/100`}
-        />
-      </div>
-      <div>
-        <TextField
-          label='Quantity'
-          select
-          value={quantity}
-          onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-          size='medium'
-          fullWidth
-        >
-          {[...Array(20)].map((_, i) => (
-            <MenuItem key={i + 1} value={i + 1}>
-              {i + 1}
-            </MenuItem>
-          ))}
-        </TextField>
-      </div>
-      {item && (
-        <FormControlLabel
-          control={
-            <Checkbox checked={isPurchased} onChange={(e) => setIsPurchased(e.target.checked)} />
-          }
-          label='Purchased'
-        />
-      )}
-      <div className='flex justify-end gap-4 mt-8'>
-        <Button type='button' onClick={handleCancel} color='inherit'>
-          Cancel
-        </Button>
-        <Button type='submit' variant='contained' disabled={isLoading || !name.trim()}>
-          {item ? 'Save Item' : 'Add'}
-        </Button>
-      </div>
-    </form>
+    </>
   );
 }

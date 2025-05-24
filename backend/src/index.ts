@@ -104,14 +104,12 @@ app.get('/', (req, res) => {
   res.send('See you space cowboy...');
 });
 
-// Error logging middleware (should be after all routes)
 app.use(
   expressWinston.errorLogger({
     winstonInstance: logger,
   })
 );
 
-// Test DB connection and start server
 async function startServer() {
   try {
     await prisma.$queryRaw`SELECT 1`;
