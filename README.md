@@ -1,4 +1,10 @@
-# Shopping List Monorepo
+# Shopping List
+
+## Notes
+
+- Added testing configuration and a simple test in each project
+- Did not handle good UI feedback for required/optional fields, that'd be a good followup
+
 
 ## Directory Layout
 
@@ -11,7 +17,19 @@
 ### Prerequisites
 - Docker and Docker Compose installed
 
-### Developing
+### Running the App
+
+1. Build and start all services:
+```sh
+docker-compose up --build
+```
+
+2. Access the apps:
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:4000](http://localhost:4000)
+
+
+### Development
 
 1. Run the postgres db
 ```sh
@@ -28,26 +46,13 @@ cd backend && npx prisma migrate deploy && npm run dev
 cd frontend && npm run dev
 ```
 
-### Running the App
-
-1. Build and start all services:
-```sh
-docker-compose up --build
-```
-
-2. Access the apps:
-   - Frontend: [http://localhost:3000](http://localhost:3000)
-   - Backend API: [http://localhost:4000](http://localhost:4000)
-
-### Development
-
 - Code changes in `/frontend` and `/backend` are reflected via Docker volumes.
-- The backend connects to Postgres, but falls back to mock data if the DB is unavailable.
+
 
 ## Project Structure
 
 - `/frontend` — Next.js app (React, Material-UI, styled-components)
-- `/backend` — Express REST API (Node.js, pg)
+- `/backend` — Express REST API (Node.js, prisma, pg)
 - `/docker-compose.yml` — Multi-service orchestration
 
 ---
