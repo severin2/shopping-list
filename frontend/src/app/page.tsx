@@ -1,7 +1,7 @@
 'use client';
 
-import ItemForm from '@/components/ItemForm';
-import ItemList from '@/components/ItemList';
+import ItemForm from '@/components/itemForm';
+import ItemList from '@/components/itemList';
 import {
   addItem,
   clearSelectedItem,

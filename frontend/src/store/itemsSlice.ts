@@ -1,8 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
 import { ResponseData } from '@/app/api/items/route';
-import { call, put, takeLatest } from 'redux-saga/effects';
 import { Item } from '@/types/item';
-import { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 export interface ItemsState {
   items: Item[];

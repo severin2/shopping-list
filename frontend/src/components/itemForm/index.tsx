@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
-import { DosisHeader } from './Header';
+import { DosisHeader } from '@/components/header/style';
 
 interface ItemFormProps {
   onAdd?: (item: Omit<Item, 'id' | 'isPurchased'>) => void;
@@ -125,7 +125,7 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
               Cancel
             </Button>
             <Button type='submit' variant='contained' disabled={isLoading || !name.trim()}>
-              {item ? 'Save Item' : 'Add Task'}
+              {item ? 'Save Item' : 'Add Item'}
             </Button>
           </div>
         </form>

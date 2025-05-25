@@ -1,9 +1,9 @@
 import '@/app/globals.css';
-import Header from '@/components/Header';
-import { ReduxProviderWrapper } from '@/components/ReduxProviderWrapper';
-import { MuiThemeProvider } from '@/components/MuiThemeProvider';
+import { ReduxProviderWrapper } from '@/app/providers/ReduxProviderWrapper';
+import { MuiThemeProvider } from '@/app/providers/MuiThemeProvider';
 import type { Metadata } from 'next';
 import { Dosis, Nunito_Sans } from 'next/font/google';
+import Header from '@/components/header';
 
 const dosisSans = Dosis({
   variable: '--font-dosis-sans',
