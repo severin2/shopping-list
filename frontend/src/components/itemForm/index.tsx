@@ -74,8 +74,8 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
         <form onSubmit={handleSubmit} className='flex flex-col justify-between h-full'>
           <div className='flex flex-col gap-6'>
             <TextField
-              label={item ? 'Edit item name' : 'New Item'}
-              placeholder='Item Name'
+              label={item ? 'Edit Item Name' : 'New Item'}
+              placeholder='enter a name...'
               value={name}
               onChange={(e) => setName(e.target.value)}
               size='medium'
@@ -84,7 +84,7 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
             />
             <TextField
               label='Description'
-              placeholder='Description'
+              placeholder='enter a description...'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               size='medium'

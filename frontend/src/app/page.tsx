@@ -75,7 +75,9 @@ export default function Home() {
       {!isLoading && (
         <>
           <div className='flex items-end justify-between'>
-            <Typography variant='body1'>Your Items</Typography>
+            <Typography variant='body1'>
+              <strong>Your Items</strong>
+            </Typography>
             {items.length > 0 && (
               <Button type='button' variant='contained' onClick={handleAddStart}>
                 Add Item

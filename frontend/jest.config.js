@@ -7,7 +7,7 @@ module.exports = {
   },
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   transform: {
-    '^.+\\.(ts|tsx)$': 'babel-jest',
+    '^.+\\.(ts|tsx)$': ['babel-jest', { configFile: './testing/babel.config.js' }],
   },
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
