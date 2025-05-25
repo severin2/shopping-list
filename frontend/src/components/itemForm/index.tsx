@@ -75,7 +75,7 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
           <div className='flex flex-col gap-6'>
             <TextField
               label={item ? 'Edit item name' : 'New Item'}
-              placeholder={item ? 'Buy tomatoes' : 'Enter item name'}
+              placeholder='Item Name'
               value={name}
               onChange={(e) => setName(e.target.value)}
               size='medium'
@@ -84,7 +84,7 @@ export default function ItemForm({ onAdd, onEdit, onCancel, isLoading, item }: I
             />
             <TextField
               label='Description'
-              placeholder={item ? 'Get them from Walmart' : 'Enter description'}
+              placeholder='Description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               size='medium'
